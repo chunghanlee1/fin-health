@@ -315,6 +315,7 @@ class Examples(object):
         self.investmentRisk = investmentRisk
         self.userDeathAge = 90
         self.userRetirementAge = 60
+        self.userCurrentAge = 'To be specified'
     def infoGetter(self):
         print('---------------------------\nThe Following is case information: \nIncome: %d \nIncome Growth: %d%% \nSpending: %d \nInflation rate: %d%% \nTotal savings: %d \nInvestment riskiness: %d out of 10 \nCurrent Age: %d \nExpected to live until: %d \nRetirement Age: %d\n--------------------------' \
         % (self.userIncome, self.incomeGrowth*100, self.userSpending, self.inflation*100, self.userSavings, self.investmentRisk, self.userCurrentAge, self.userDeathAge, self.userRetirementAge))
@@ -346,7 +347,7 @@ def runExample():
         if choice == 's':
             while True:
                 try:
-                    choice = str(input("Type 'h' for a healthy example, 's' for so-so, 'u' for unhealthy: "))
+                    choice = str(input("Type 'h' for a healthy example, 's' for so-so, 'u' for a bit unhealthy: "))
                 except:
                     print("Please type a letter.")
                     continue
