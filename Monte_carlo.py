@@ -8,7 +8,7 @@ import numpy as np
 import scipy.stats as stats
 import random
 import pylab as plt
-
+from six.moves import input #Needed for Python 2.X
 
 
 def userInput():
@@ -244,8 +244,8 @@ def simHealthCheck(userIncome, incomeGrowth, userSpending, inflation, userSaving
 
 def reqReturnHealthCheck(userIncome, incomeGrowth, userSpending, inflation, userSavings, userCurrentAge, userDeathAge, userRetirementAge):
     """
-    Input user financial information
-    Output user required return to achieve financial goal. Result obtained using bisection search.
+    Input: User financial information
+    Output: User required return to achieve financial goal. Result obtained using bisection search.
     """
     lifetimeIncome = yearlyTotalIncome(userIncome, incomeGrowth, userCurrentAge, userDeathAge, userRetirementAge)
     lifetimeSpending = yearlyTotalSpending(userSpending, inflation, userCurrentAge, userDeathAge)
@@ -269,10 +269,15 @@ def reqReturnHealthCheck(userIncome, incomeGrowth, userSpending, inflation, user
     return reqReturnOutputClassification(reqReturn)
 
 def beginHealthCheck(userIncome, incomeGrowth, userSpending, inflation, userSavings, investmentRisk, userCurrentAge, userDeathAge, userRetirementAge):
+    """
+    Begin health check. Can choose to use required return or Monte Carlo simulation method
+    Input: User financial and personal information
+    Output: Analysis Result
+    """
     while True:
         try:
             healthCheckOption = str(input("If you would like to use our basic function, please enter 'b', if you want advanced function, enter 'a', if you want to leave, press 'e': \n"))
-        except ValueError:
+        except:
             print("Please enter a lower case 'b', 'a', or 'e'.")
             continue
         if healthCheckOption == 'b':
@@ -311,7 +316,7 @@ class Examples(object):
         self.userDeathAge = 90
         self.userRetirementAge = 60
     def infoGetter(self):
-        return print('---------------------------\nThe Following is case information: \nIncome: %d \nIncome Growth: %d%% \nSpending: %d \nInflation rate: %d%% \nTotal savings: %d \nInvestment riskiness: %d out of 10 \nCurrent Age: %d \nExpected to live until: %d \nRetirement Age: %d\n--------------------------' \
+        print('---------------------------\nThe Following is case information: \nIncome: %d \nIncome Growth: %d%% \nSpending: %d \nInflation rate: %d%% \nTotal savings: %d \nInvestment riskiness: %d out of 10 \nCurrent Age: %d \nExpected to live until: %d \nRetirement Age: %d\n--------------------------' \
         % (self.userIncome, self.incomeGrowth*100, self.userSpending, self.inflation*100, self.userSavings, self.investmentRisk, self.userCurrentAge, self.userDeathAge, self.userRetirementAge))
     def runTest(self):
         print(simHealthCheck(self.userIncome, self.incomeGrowth, self.userSpending, self.inflation, self.userSavings, self.investmentRisk, self.userCurrentAge, self.userDeathAge, self.userRetirementAge))
@@ -412,7 +417,11 @@ def runExample():
             continue
 
 """
+End example cases
+"""
+			
+"""
 Initiate Functions
 """
-userHealthCheck()#run health-check function
-runExample()
+#userHealthCheck()#run health-check function
+#runExample()
